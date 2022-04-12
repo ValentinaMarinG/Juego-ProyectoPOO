@@ -38,7 +38,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     public Lienzo() {
         initComponents();
         this.figuras = new LinkedList<>();
-        this.asteroides = new LinkedList<>();
         this.Jugando = false;
         this.segundo = 0;
     }
@@ -62,7 +61,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             }
         }
     }
-    
+
     public void dibujarRectangulo(Graphics g, Rectangulo elRectangulo) {
         g.setColor(elRectangulo.getColorRelleno());
         g.fillRect(elRectangulo.getX(), elRectangulo.getY(), elRectangulo.getBase(), elRectangulo.getAltura());
@@ -117,21 +116,13 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     public void run() {
         while (this.isJugando()) {
             validarDirecciones();
-            System.out.println("" + segundo);
-            if (segundo % 100 == 0) {
+            //System.out.println("" + segundo);
+            if (segundo % 95 == 0) {
                 System.out.println("generar");
                 generar_asteroides();
-//                int x=metodo_random(80, 500);
-//                Imagen asteroide_1 =new Imagen(true, false, true, x, 0, "src/Imagenes/asteroide.png", 80, 60);
-//                this.figuras.add(asteroide_1);
-//                this.figuras.add(this.asteroides.get(2));
-//                  int NumRandom=metodo_random(0, 5);
-//                  //((Imagen)this.asteroides.get(NumRandom)).setX(x);
-//                  Imagen asteroide=((Imagen)this.asteroides.get(NumRandom));
-//                  this.figuras.add(asteroide);
             }
             repaint();
-            int time_to_sleep=metodo_random(30, 45);
+            int time_to_sleep = metodo_random(30, 45);
             esperar(time_to_sleep);
         }
     }
@@ -169,28 +160,25 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         for (FiguraGeometrica Actual : this.getFiguras()) {
             if (Actual instanceof FiguraEstandar) {
                 if (Actual.isMaquina()) {
-//                            if (Actual.isDireccionAdelante()) {
-//                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() + 1);
-//                            } else {
-//                                ((FiguraEstandar) Actual).setX(((FiguraEstandar) Actual).getX() - 1);
-//                            }
-                    if (Actual.isDireccionArriba()) {
-                        int y = metodo_random(0, 3);
-                        ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + y);
-                    } else {
-                        ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
-                    }
+                    direccion_arriba_y_abajo(((FiguraEstandar)Actual));
                 } else {
-                    verificarColision(Actual);
                     boolean colision = verificarColision((FiguraEstandar) Actual);
-                    System.out.println(colision);
-                    if (colision) {
+                    if(colision){
                         this.Jugando = false;
                         JOptionPane.showMessageDialog(this, "Game out");
                     }
                 }
                 Actual.actualizar_area();
             }
+        }
+    }
+
+    public void direccion_arriba_y_abajo(FiguraEstandar Actual) {
+        if (Actual.isDireccionArriba()) {
+            int y = metodo_random(0, 3);
+            ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() + y);
+        } else {
+            ((FiguraEstandar) Actual).setY(((FiguraEstandar) Actual).getY() - 1);
         }
     }
 

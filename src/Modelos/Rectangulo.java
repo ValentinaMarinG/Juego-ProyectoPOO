@@ -24,6 +24,7 @@ public class Rectangulo extends FiguraEstandar{
         super(borde, colorRelleno, direccionArriba, direccionAdelante, maquina, x, y);
         this.base = base;
         this.altura = altura;
+        actualizar_area();
     }
 
     public Rectangulo(Color borde, Color colorRelleno, boolean direccionArriba, boolean direccionAdelante, boolean maquina, int base, int altura) {

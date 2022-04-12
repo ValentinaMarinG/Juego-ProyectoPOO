@@ -168,7 +168,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void startKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_startKeyPressed
         // TODO add your handling code here:
-        this.setFocusable(true);
+        //this.setFocusable(true);
         int key = evt.getKeyCode();
         if (key == KeyEvent.VK_UP) {
             //this.player.setY(this.player.getY()-20);
@@ -179,13 +179,15 @@ public class Inicio extends javax.swing.JFrame {
         } else if (key == KeyEvent.VK_RIGHT) {
             this.player.setX(this.player.getX() + 20);
         } else if (key == KeyEvent.VK_SPACE) {
-           Circulo laserCohete = new Circulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+22, this.player.getY(), 5);
-           this.lienzo1.getFiguras().add(laserCohete);
+           laserCohete();
         }
     }//GEN-LAST:event_startKeyPressed
 
+    public void laserCohete(){
+        Rectangulo laserCohete = new Rectangulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+22, this.player.getY(), 8, 4);
+        this.lienzo1.getFiguras().add(laserCohete);
+    }
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed
-        // TODO add your handling code here:
         this.lienzo1.setJugando(false);
     }//GEN-LAST:event_pauseActionPerformed
 
