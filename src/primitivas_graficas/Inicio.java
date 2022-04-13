@@ -61,23 +61,18 @@ public class Inicio extends javax.swing.JFrame {
 
         Imagen asteroide_1 = new Imagen(true, false, true, 10, 0, "src/Imagenes/asteroide.png", 80, 60);
         this.lienzo1.getFiguras().add(asteroide_1);
-        this.lienzo1.getAsteroides().add(asteroide_1);
 
         Imagen asteroide_2 = new Imagen(true, false, true, 350, 0, "src/Imagenes/asteroide (1).png", 90, 90);
         this.lienzo1.getFiguras().add(asteroide_2);
-        this.lienzo1.getAsteroides().add(asteroide_2);
 
         Imagen asteroide_3 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide (2).png", 80, 90);
         this.lienzo1.getFiguras().add(asteroide_3);
-        this.lienzo1.getAsteroides().add(asteroide_3);
 
 //        Imagen asteroide_4 =new Imagen(true, false, true, 400, 0, "src/Imagenes/asteroide (3).png", 80, 80);
 //        this.lienzo1.getFiguras().add(asteroide_4);
-//        this.lienzo1.getAsteroides().add(asteroide_4);
 //        
 //        Imagen meteorito =new Imagen(true, false, true, 0, 0, "src/Imagenes/meteorito.png", 80, 80);
 //        this.lienzo1.getFiguras().add(meteorito);
-//        this.lienzo1.getAsteroides().add(meteorito);
     }
 
     /**
@@ -184,7 +179,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_startKeyPressed
 
     public void laserCohete(){
-        Rectangulo laserCohete = new Rectangulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+22, this.player.getY(), 8, 4);
+        Rectangulo laserCohete = new Rectangulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+21, this.player.getY(), 4, 10);
         this.lienzo1.getFiguras().add(laserCohete);
     }
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed

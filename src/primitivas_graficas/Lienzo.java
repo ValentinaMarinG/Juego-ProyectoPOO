@@ -200,12 +200,23 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         boolean respuesta = false;
         int i = 0;
         while (i < this.figuras.size() && !respuesta) {
-            if (jugador != this.figuras.get(i) && jugador.getArea().intersects(this.figuras.get(i).getArea())) {
+            if(this.figuras.get(i) instanceof Rectangulo){
+                respuesta=false;
+            }else if (jugador != this.figuras.get(i) && jugador.getArea().intersects(this.figuras.get(i).getArea())) {
                 respuesta = true;
             }
             i++;
         }
+        return respuesta;
+    }
 
+    
+    public boolean verificarSiColisionaConLaser(FiguraGeometrica Maquina){
+        boolean respuesta=false;
+        System.out.println("hola");
+        if(Maquina instanceof Rectangulo && Maquina.equals("laserCohete")){
+           respuesta=true; 
+        }
         return respuesta;
     }
 
