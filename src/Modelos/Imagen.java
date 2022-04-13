@@ -16,6 +16,7 @@ public class Imagen extends FiguraEstandar{
     private String ruta;
     private int ancho;
     private int alto;
+    private int puntos;
 
     public Imagen() {
         super(false, false, false, 0, 0);
@@ -36,9 +37,17 @@ public class Imagen extends FiguraEstandar{
         actualizar_area();
     }
     
+    public Imagen(boolean direccionArriba, boolean direccionAdelante, boolean maquina, int x, int y, String ruta, int ancho, int alto) {
+        super(null, null, direccionArriba, direccionAdelante, maquina, x, y);
+        this.ruta = ruta;
+        this.ancho = ancho;
+        this.alto = alto;
+        actualizar_area();
+    }
+    
     @Override
     public void actualizar_area() {
-        Rectangle area = new Rectangle(this.getX(), this.getY(), ancho, alto);
+        Rectangle area = new Rectangle(this.getX(), this.getY(), getAncho(), getAlto());
         this.setArea(area);
     }
     
@@ -82,6 +91,20 @@ public class Imagen extends FiguraEstandar{
      */
     public void setAlto(int alto) {
         this.alto = alto;
+    }
+
+    /**
+     * @return the puntos
+     */
+    public int getPuntos() {
+        return puntos;
+    }
+
+    /**
+     * @param puntos the puntos to set
+     */
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
     }
     
     

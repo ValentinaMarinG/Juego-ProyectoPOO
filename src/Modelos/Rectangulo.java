@@ -35,7 +35,7 @@ public class Rectangulo extends FiguraEstandar{
     
     @Override
     public void actualizar_area() {
-        Rectangle area = new Rectangle(this.getX(), this.getY(), 0, 0);
+        Rectangle area = new Rectangle(this.getX(), this.getY(), base, altura);
         this.setArea(area);
     }
     
