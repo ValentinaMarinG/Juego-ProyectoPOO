@@ -12,6 +12,7 @@ import Modelos.FiguraGeometrica;
 import Modelos.Imagen;
 import Modelos.Rectangulo;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -32,6 +33,10 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     private LinkedList<FiguraGeometrica> basurero;
     private boolean Jugando;
     private int segundo;
+    private int vidas;
+    private int puntos;
+    private Thread proceso;
+    private boolean pierdeVida;
 
     /**
      * Creates new form Lienzo
@@ -43,12 +48,17 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         this.basurero = new LinkedList<>();
         this.Jugando = false;
         this.segundo = 0;
+        this.vidas = 0;
+        this.puntos = 0;
+        this.pierdeVida = false;
+        
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         dibujarFiguras(g);
+        dibujarPuntaje(g);
     }
 
     public void dibujarFiguras(Graphics g) {
@@ -62,6 +72,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             } else if (figuraActual instanceof Rectangulo) {
                 dibujarRectangulo(g, (Rectangulo) figuraActual);
             }
+            repaint();
         }
         this.figuras.removeAll(basurero);
         this.asteroides.removeAll(basurero);
@@ -127,7 +138,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                 generar_asteroides();
             }
             repaint();
-            int time_to_sleep = metodo_random(40, 50);
+            int time_to_sleep = metodo_random(1, 10);
             esperar(time_to_sleep);
         }
     }
@@ -169,10 +180,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     direccion_arriba_y_abajo(((FiguraEstandar)Actual));
                 } else {
                     boolean colision = verificarColision((FiguraEstandar) Actual);
-                    if(colision){
-                        this.setJugando(false);
-                        JOptionPane.showMessageDialog(this, "Game out");
-                    }
+                    actualizarVidas(colision);
                 }
                 Actual.actualizar_area();
             }
@@ -232,6 +240,9 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             }
             i++;
         }
+        if(respuesta==true){
+            this.puntos++;
+        }
     }
 
     public void validarFrontera(FiguraEstandar laFigura) {
@@ -239,6 +250,36 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             laFigura.setDireccionAdelante(false);
         } else if (laFigura.getX() <= 1) {
             laFigura.setDireccionAdelante(true);
+        }
+    }
+    public void dibujarPuntaje(Graphics g){
+        Font score = new Font("Times New Roman", Font.BOLD, 25);
+        g.setFont(score);
+        g.setColor(Color.red);
+        g.drawString("Vidas: "+getVidas(), 450, 20);
+        g.drawString("Puntos: "+getPuntos(), 450, 50);
+    }
+    public void actualizarVidas(boolean respuesta){
+        if(respuesta == true){
+            if(this.getVidas()==0){
+                this.setJugando(false);
+                JOptionPane.showMessageDialog(this, "PERDISTE");
+            }else if(this.getVidas()>0 && this.getVidas() <=3){
+                this.vidas--;
+                this.proceso = new Thread(this);
+                this.setJugando(false);
+                this.setFiguras(new LinkedList<>());
+                this.setJugando(true);
+                this.proceso.start();  
+            }
+        }
+        ganador();
+    }
+    public void ganador(){
+        if(this.puntos>20){
+            this.setJugando(false);
+            JOptionPane.showMessageDialog(this, "GANASTE");
+            
         }
     }
 
@@ -310,6 +351,62 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
      */
     public void setSegundo(int segundo) {
         this.segundo = segundo;
+    }
+
+    /**
+     * @return the vidas
+     */
+    public int getVidas() {
+        return vidas;
+    }
+
+    /**
+     * @param vidas the vidas to set
+     */
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
+    }
+
+    /**
+     * @return the puntos
+     */
+    public int getPuntos() {
+        return puntos;
+    }
+
+    /**
+     * @param puntos the puntos to set
+     */
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
+
+    /**
+     * @return the proceso
+     */
+    public Thread getProceso() {
+        return proceso;
+    }
+
+    /**
+     * @param proceso the proceso to set
+     */
+    public void setProceso(Thread proceso) {
+        this.proceso = proceso;
+    }
+
+    /**
+     * @return the pierdeVida
+     */
+    public boolean isPierdeVida() {
+        return pierdeVida;
+    }
+
+    /**
+     * @param pierdeVida the pierdeVida to set
+     */
+    public void setPierdeVida(boolean pierdeVida) {
+        this.pierdeVida = pierdeVida;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

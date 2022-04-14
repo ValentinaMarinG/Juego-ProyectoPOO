@@ -148,6 +148,7 @@ public class Inicio extends javax.swing.JFrame {
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
+        cambiarFoco();
     }//GEN-LAST:event_startActionPerformed
 
     private void startKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_startKeyPressed
@@ -189,6 +190,7 @@ public class Inicio extends javax.swing.JFrame {
     
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed
         this.lienzo1.setJugando(false);
+        cambiarFoco();
     }//GEN-LAST:event_pauseActionPerformed
 
     private void renewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renewActionPerformed
@@ -202,8 +204,30 @@ public class Inicio extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
+        int key = evt.getKeyCode();
+        if (key == KeyEvent.VK_UP) {
+            //this.player.setY(this.player.getY()-20);
+        } else if (key == KeyEvent.VK_LEFT) {
+            this.player.setX(this.player.getX() - 20);
+        } else if (key == KeyEvent.VK_DOWN) {
+            //this.player.setY(this.player.getY()+20);
+        } else if (key == KeyEvent.VK_RIGHT) {
+            this.player.setX(this.player.getX() + 20);
+        } else if (key == KeyEvent.VK_SPACE) {
+           laserCohete();
+        }
     }//GEN-LAST:event_formKeyPressed
-
+    public void cambiarFoco(){
+        this.start.setFocusable(false);
+        this.renew.setFocusable(false);
+        this.pause.setFocusable(false);
+        this.setFocusable(true);
+    }
+    public void actualizarVidas(){
+       if(this.lienzo1.isPierdeVida() == true){
+            iniciarMundo();
+        }
+    }
     /**
      * @param args the command line arguments
      */
