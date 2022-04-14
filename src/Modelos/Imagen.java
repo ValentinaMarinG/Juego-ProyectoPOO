@@ -37,13 +37,6 @@ public class Imagen extends FiguraEstandar{
         actualizar_area();
     }
     
-    public Imagen(boolean direccionArriba, boolean direccionAdelante, boolean maquina, int x, int y, String ruta, int ancho, int alto) {
-        super(null, null, direccionArriba, direccionAdelante, maquina, x, y);
-        this.ruta = ruta;
-        this.ancho = ancho;
-        this.alto = alto;
-        actualizar_area();
-    }
     
     @Override
     public void actualizar_area() {
