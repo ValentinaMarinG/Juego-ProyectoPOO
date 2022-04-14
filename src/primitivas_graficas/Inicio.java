@@ -201,21 +201,10 @@ public class Inicio extends javax.swing.JFrame {
         iniciarMundo();
         startActionPerformed(evt);   
     }//GEN-LAST:event_renewActionPerformed
-
+//
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-        int key = evt.getKeyCode();
-        if (key == KeyEvent.VK_UP) {
-            //this.player.setY(this.player.getY()-20);
-        } else if (key == KeyEvent.VK_LEFT) {
-            this.player.setX(this.player.getX() - 20);
-        } else if (key == KeyEvent.VK_DOWN) {
-            //this.player.setY(this.player.getY()+20);
-        } else if (key == KeyEvent.VK_RIGHT) {
-            this.player.setX(this.player.getX() + 20);
-        } else if (key == KeyEvent.VK_SPACE) {
-           laserCohete();
-        }
+        startKeyPressed(evt);
     }//GEN-LAST:event_formKeyPressed
     public void cambiarFoco(){
         this.start.setFocusable(false);

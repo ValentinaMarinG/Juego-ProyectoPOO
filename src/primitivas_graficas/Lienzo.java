@@ -235,8 +235,8 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             laser.actualizar_area();
             if (laser != this.getAsteroides().get(i) && laser.getArea().intersects(this.getAsteroides().get(i).getArea())) {
                 respuesta = true;
-                System.out.println("Resouesta laser"+respuesta);
                 this.getBasurero().add(this.getAsteroides().get(i));
+                this.getBasurero().add(laser);
             }
             i++;
         }
