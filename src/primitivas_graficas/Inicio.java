@@ -32,7 +32,6 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         initComponents();
         this.lienzo1 = new Lienzo();
-
         this.lienzo1.setVisible(true);
         this.lienzo1.setSize(585, 650);
         this.lienzo1.setBackground(Color.black);
@@ -41,41 +40,27 @@ public class Inicio extends javax.swing.JFrame {
         this.add(lienzo1);
         this.setLocationRelativeTo(null);
         this.setTitle("GALAXY GAME");
-        this.setSize(585, 650);
+        this.setSize(700, 650);
 
         iniciarMundo();
-
-//        for (int i = 0; i < 10; i++) {
-//            int random = (int) Math.ceil(Math.random()*25);
-//            System.out.println(random);
-//        }
-//        for (int i = 0; i < 10; i++) {
-//            int random = ThreadLocalRandom.current().nextInt(0, 10);
-//            System.out.println(random);
-//        }
     }
 
     public void iniciarMundo() {
         this.player = new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
         this.lienzo1.getFiguras().add(this.player);
 
-        Imagen asteroide_1 = new Imagen(true, false, true, 10, 0, "src/Imagenes/asteroide.png", 80, 60);
+        Imagen asteroide_1 = new Imagen(true, false, true, 10, 0, "src/Imagenes/asteroide.png", 80, 60, 200);
         this.lienzo1.getFiguras().add(asteroide_1);
         this.lienzo1.getAsteroides().add(asteroide_1);
 
-        Imagen asteroide_2 = new Imagen(true, false, true, 350, 0, "src/Imagenes/asteroide (1).png", 90, 90);
+        Imagen asteroide_2 = new Imagen(true, false, true, 350, 0, "src/Imagenes/asteroide (1).png", 90, 90, 50);
         this.lienzo1.getFiguras().add(asteroide_2);
         this.lienzo1.getAsteroides().add(asteroide_2);
         
-        Imagen asteroide_3 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide (2).png", 80, 90);
+        Imagen asteroide_3 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide (2).png", 80, 90, 250);
         this.lienzo1.getFiguras().add(asteroide_3);
         this.lienzo1.getAsteroides().add(asteroide_3);
         
-//        Imagen asteroide_4 =new Imagen(true, false, true, 400, 0, "src/Imagenes/asteroide (3).png", 80, 80);
-//        this.lienzo1.getFiguras().add(asteroide_4);
-//        
-//        Imagen meteorito =new Imagen(true, false, true, 0, 0, "src/Imagenes/meteorito.png", 80, 80);
-//        this.lienzo1.getFiguras().add(meteorito);
     }
 
     /**
@@ -159,6 +144,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+        renew.setFocusable(false);
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
@@ -171,20 +157,36 @@ public class Inicio extends javax.swing.JFrame {
         if (key == KeyEvent.VK_UP) {
             //this.player.setY(this.player.getY()-20);
         } else if (key == KeyEvent.VK_LEFT) {
-            this.player.setX(this.player.getX() - 20);
+            int newpos = movimiento_cohete(this.player.getX() - 20);
+            this.player.setX(newpos);
         } else if (key == KeyEvent.VK_DOWN) {
             //this.player.setY(this.player.getY()+20);
         } else if (key == KeyEvent.VK_RIGHT) {
-            this.player.setX(this.player.getX() + 20);
+//            this.player.setX(this.player.getX() + 20);
+            int newpos = movimiento_cohete(this.player.getX() + 20);
+            this.player.setX(newpos);
         } else if (key == KeyEvent.VK_SPACE) {
            laserCohete();
         }
     }//GEN-LAST:event_startKeyPressed
 
+    public int movimiento_cohete(int posicion){
+        int nueva_posicion=0;
+        if(posicion<0){
+            nueva_posicion=this.lienzo1.getWidth();
+        } else if(posicion>this.lienzo1.getWidth()){
+            nueva_posicion=0;
+        }else{
+            nueva_posicion=posicion;
+        }
+        return nueva_posicion;
+    }
+    
     public void laserCohete(){
         Rectangulo laserCohete = new Rectangulo(Color.ORANGE, Color.YELLOW, false, false, true, this.player.getX()+21, this.player.getY(), 4, 10);
         this.lienzo1.getFiguras().add(laserCohete);
     }
+    
     private void pauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseActionPerformed
         this.lienzo1.setJugando(false);
     }//GEN-LAST:event_pauseActionPerformed
@@ -195,9 +197,7 @@ public class Inicio extends javax.swing.JFrame {
         this.lienzo1.setJugando(false);
         this.lienzo1.setFiguras(new LinkedList<>());
         iniciarMundo();
-        this.lienzo1.setJugando(true);
-        this.proceso.start();
-
+        startActionPerformed(evt);   
     }//GEN-LAST:event_renewActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

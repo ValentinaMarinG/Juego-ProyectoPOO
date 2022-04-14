@@ -133,7 +133,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     }
 
     public void generar_asteroides() {
-        int x = metodo_random(0, 400);
+        int x = metodo_random(0, 500);
         FiguraGeometrica figura_nueva = asteroides();
         ((Imagen) figura_nueva).setX(x);
         this.getFiguras().add(figura_nueva);
@@ -144,19 +144,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         FiguraGeometrica figura_nueva = null;
         int NumRandom = metodo_random(0, 5);
         if (NumRandom == 0) {
-            Imagen asteroide_1 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60);
+            Imagen asteroide_1 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60, 200);
             figura_nueva = asteroide_1;
         } else if (NumRandom == 1) {
-            Imagen asteroide_2 = new Imagen(true, false, true, 300, 0, "src/Imagenes/asteroide (1).png", 90, 90);
+            Imagen asteroide_2 = new Imagen(true, false, true, 300, 0, "src/Imagenes/asteroide (1).png", 90, 90, 50);
             figura_nueva = asteroide_2;
         } else if (NumRandom == 2) {
-            Imagen asteroide_3 = new Imagen(true, false, true, 250, 0, "src/Imagenes/asteroide (2).png", 80, 90);
+            Imagen asteroide_3 = new Imagen(true, false, true, 250, 0, "src/Imagenes/asteroide (2).png", 80, 90, 250);
             figura_nueva = asteroide_3;
         } else if (NumRandom == 3) {
-            Imagen asteroide_4 = new Imagen(true, false, true, 100, 0, "src/Imagenes/asteroide (3).png", 80, 80);
+            Imagen asteroide_4 = new Imagen(true, false, true, 100, 0, "src/Imagenes/asteroide (3).png", 80, 80, 100);
             figura_nueva = asteroide_4;
         } else {
-            Imagen meteorito = new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80);
+            Imagen meteorito = new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80, 25);
             figura_nueva = meteorito;
         }
         return figura_nueva;
