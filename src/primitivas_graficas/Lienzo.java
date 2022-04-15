@@ -70,7 +70,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
             } else if (figuraActual instanceof Rectangulo) {
                 dibujarRectangulo(g, (Rectangulo) figuraActual);
             }
-            repaint();
         }
         this.figuras.removeAll(basurero);
         this.asteroides.removeAll(basurero);

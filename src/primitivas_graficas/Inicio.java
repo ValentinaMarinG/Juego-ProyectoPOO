@@ -43,7 +43,6 @@ public class Inicio extends javax.swing.JFrame {
         this.setSize(700, 650);
 
         iniciarMundo();
-<<<<<<< HEAD
 
 //        for (int i = 0; i < 10; i++) {
 //            int random = (int) Math.ceil(Math.random()*25);
@@ -53,8 +52,6 @@ public class Inicio extends javax.swing.JFrame {
 //            int random = ThreadLocalRandom.current().nextInt(0, 10);
 //            System.out.println(random);
 //        }
-=======
->>>>>>> 05c0365886310446d05d29913891a7e85b9a9beb
     }
 
     public void iniciarMundo() {
