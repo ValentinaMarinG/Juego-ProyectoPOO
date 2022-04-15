@@ -44,7 +44,6 @@ public class Inicio extends javax.swing.JFrame {
         this.setSize(680, 650);
 
         iniciarMundo();
-        
 
 //        for (int i = 0; i < 10; i++) {
 //            int random = (int) Math.ceil(Math.random()*25);
@@ -226,11 +225,6 @@ public class Inicio extends javax.swing.JFrame {
         this.renew.setFocusable(false);
         this.pause.setFocusable(false);
         this.setFocusable(true);
-    }
-    public void actualizarVidas(){
-       if(this.lienzo1.isPierdeVida() == true){
-            iniciarMundo();
-        }
     }
     /**
      * @param args the command line arguments

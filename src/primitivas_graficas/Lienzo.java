@@ -36,7 +36,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     private int vidas;
     private int puntos;
     private Thread proceso;
-    private boolean pierdeVida;
 
     /**
      * Creates new form Lienzo
@@ -48,9 +47,8 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         this.basurero = new LinkedList<>();
         this.Jugando = false;
         this.segundo = 0;
-        this.vidas = 0;
+        this.vidas = 3;
         this.puntos = 0;
-        this.pierdeVida = false;
         
     }
 
@@ -180,7 +178,11 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     direccion_arriba_y_abajo(((FiguraEstandar)Actual));
                 } else {
                     boolean colision = verificarColision((FiguraEstandar) Actual);
-                    actualizarVidas(colision);
+                    if(colision){
+                        this.setJugando(false);
+                        JOptionPane.showMessageDialog(this, "PERDISTE");
+                    }
+                    ganador();
                 }
                 Actual.actualizar_area();
             }
@@ -256,30 +258,29 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         Font score = new Font("Times New Roman", Font.BOLD, 25);
         g.setFont(score);
         g.setColor(Color.red);
-        g.drawString("Vidas: "+getVidas(), 450, 20);
-        g.drawString("Puntos: "+getPuntos(), 450, 50);
+        g.drawString("Puntos: "+getPuntos(), 450, 20);
     }
-    public void actualizarVidas(boolean respuesta){
-        if(respuesta == true){
-            if(this.getVidas()==0){
-                this.setJugando(false);
-                JOptionPane.showMessageDialog(this, "PERDISTE");
-            }else if(this.getVidas()>0 && this.getVidas() <=3){
-                this.vidas--;
-                this.proceso = new Thread(this);
-                this.setJugando(false);
-                this.setFiguras(new LinkedList<>());
-                this.setJugando(true);
-                this.proceso.start();  
-            }
-        }
-        ganador();
-    }
+//    public void actualizarVidas(boolean respuesta){
+//        if(respuesta == true){
+//            if(this.getVidas()==0){
+//                this.setJugando(false);
+//                JOptionPane.showMessageDialog(this, "PERDISTE");
+//            }else if(this.getVidas()>0 && this.getVidas() <=3){
+//                this.vidas--;
+////                this.setPierdeVida(true);
+////                this.proceso = new Thread(this);
+////                this.setJugando(false);
+////                this.setFiguras(new LinkedList<>());
+////                this.setJugando(true);
+////                this.proceso.start();  
+//            }
+//        }
+//        ganador();
+//    }
     public void ganador(){
-        if(this.puntos>20){
+        if(this.puntos>50){
             this.setJugando(false);
             JOptionPane.showMessageDialog(this, "GANASTE");
-            
         }
     }
 
@@ -395,19 +396,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         this.proceso = proceso;
     }
 
-    /**
-     * @return the pierdeVida
-     */
-    public boolean isPierdeVida() {
-        return pierdeVida;
-    }
-
-    /**
-     * @param pierdeVida the pierdeVida to set
-     */
-    public void setPierdeVida(boolean pierdeVida) {
-        this.pierdeVida = pierdeVida;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
