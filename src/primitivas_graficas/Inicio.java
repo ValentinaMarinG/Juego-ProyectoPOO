@@ -49,15 +49,15 @@ public class Inicio extends javax.swing.JFrame {
         this.player = new Imagen(false, false, false, 200, 500, "src/Imagenes/transbordador-espacial.png", 50, 70);
         this.lienzo1.getFiguras().add(this.player);
 
-        Imagen asteroide_1 = new Imagen(true, false, true, 10, 0, "src/Imagenes/asteroide.png", 80, 60, 200);
+        Imagen asteroide_1 = new Imagen(true, false, true, 10, 0, "src/Imagenes/asteroide.png", 80, 60);
         this.lienzo1.getFiguras().add(asteroide_1);
         this.lienzo1.getAsteroides().add(asteroide_1);
 
-        Imagen asteroide_2 = new Imagen(true, false, true, 350, 0, "src/Imagenes/asteroide (1).png", 90, 90, 50);
+        Imagen asteroide_2 = new Imagen(true, false, true, 350, 0, "src/Imagenes/asteroide (1).png", 90, 90);
         this.lienzo1.getFiguras().add(asteroide_2);
         this.lienzo1.getAsteroides().add(asteroide_2);
         
-        Imagen asteroide_3 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide (2).png", 80, 90, 250);
+        Imagen asteroide_3 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide (2).png", 80, 90);
         this.lienzo1.getFiguras().add(asteroide_3);
         this.lienzo1.getAsteroides().add(asteroide_3);
         

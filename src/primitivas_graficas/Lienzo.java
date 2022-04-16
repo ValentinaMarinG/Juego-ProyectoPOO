@@ -155,19 +155,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         FiguraGeometrica figura_nueva = null;
         int NumRandom = metodo_random(0, 5);
         if (NumRandom == 0) {
-            Imagen asteroide_1 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60, 200);
+            Imagen asteroide_1 = new Imagen(true, false, true, 200, 0, "src/Imagenes/asteroide.png", 80, 60);
             figura_nueva = asteroide_1;
         } else if (NumRandom == 1) {
-            Imagen asteroide_2 = new Imagen(true, false, true, 300, 0, "src/Imagenes/asteroide (1).png", 90, 90, 50);
+            Imagen asteroide_2 = new Imagen(true, false, true, 300, 0, "src/Imagenes/asteroide (1).png", 90, 90);
             figura_nueva = asteroide_2;
         } else if (NumRandom == 2) {
-            Imagen asteroide_3 = new Imagen(true, false, true, 250, 0, "src/Imagenes/asteroide (2).png", 80, 90, 250);
+            Imagen asteroide_3 = new Imagen(true, false, true, 250, 0, "src/Imagenes/asteroide (2).png", 80, 90);
             figura_nueva = asteroide_3;
         } else if (NumRandom == 3) {
-            Imagen asteroide_4 = new Imagen(true, false, true, 100, 0, "src/Imagenes/asteroide (3).png", 80, 80, 100);
+            Imagen asteroide_4 = new Imagen(true, false, true, 100, 0, "src/Imagenes/asteroide (3).png", 80, 80);
             figura_nueva = asteroide_4;
         } else {
-            Imagen meteorito = new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80, 25);
+            Imagen meteorito = new Imagen(true, false, true, 400, 0, "src/Imagenes/meteorito.png", 80, 80);
             figura_nueva = meteorito;
         }
         return figura_nueva;
@@ -180,7 +180,6 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
                     direccion_arriba_y_abajo(((FiguraEstandar)Actual));
                 } else {
                     boolean colision = verificarColision((FiguraEstandar) Actual);
-                    actualizarVidas(colision);
                 }
                 Actual.actualizar_area();
             }
@@ -259,22 +258,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         g.drawString("Vidas: "+getVidas(), 450, 20);
         g.drawString("Puntos: "+getPuntos(), 450, 50);
     }
-    public void actualizarVidas(boolean respuesta){
-        if(respuesta == true){
-            if(this.getVidas()==0){
-                this.setJugando(false);
-                JOptionPane.showMessageDialog(this, "PERDISTE");
-            }else if(this.getVidas()>0 && this.getVidas() <=3){
-                this.vidas--;
-                this.proceso = new Thread(this);
-                this.setJugando(false);
-                this.setFiguras(new LinkedList<>());
-                this.setJugando(true);
-                this.proceso.start();  
-            }
-        }
-        ganador();
-    }
+   
     public void ganador(){
         if(this.puntos>20){
             this.setJugando(false);
