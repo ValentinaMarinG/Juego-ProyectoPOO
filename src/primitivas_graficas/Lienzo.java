@@ -33,7 +33,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
     private LinkedList<FiguraGeometrica> basurero;
     private boolean Jugando;
     private int segundo;
-    private int vidas;
+    //private int vidas;
     private int puntos;
     private Thread proceso;
 
@@ -47,7 +47,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         this.basurero = new LinkedList<>();
         this.Jugando = false;
         this.segundo = 0;
-        this.vidas = 3;
+        //this.vidas = 3;
         this.puntos = 0;
         
     }
@@ -257,12 +257,9 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         Font score = new Font("Times New Roman", Font.BOLD, 25);
         g.setFont(score);
         g.setColor(Color.red);
-        g.drawString("Vidas: "+getVidas(), 450, 20);
-        g.drawString("Puntos: "+getPuntos(), 450, 50);
-    }
-   
         g.drawString("Puntos: "+getPuntos(), 450, 20);
     }
+    
 //    public void actualizarVidas(boolean respuesta){
 //        if(respuesta == true){
 //            if(this.getVidas()==0){
@@ -280,6 +277,7 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
 //        }
 //        ganador();
 //    }
+    
     public void ganador(){
         if(this.puntos>50){
             this.setJugando(false);
@@ -357,19 +355,19 @@ public class Lienzo extends javax.swing.JPanel implements Runnable {
         this.segundo = segundo;
     }
 
-    /**
-     * @return the vidas
-     */
-    public int getVidas() {
-        return vidas;
-    }
-
-    /**
-     * @param vidas the vidas to set
-     */
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
-    }
+//    /**
+//     * @return the vidas
+//     */
+//    public int getVidas() {
+//        return vidas;
+//    }
+//
+//    /**
+//     * @param vidas the vidas to set
+//     */
+//    public void setVidas(int vidas) {
+//        this.vidas = vidas;
+//    }
 
     /**
      * @return the puntos

@@ -153,7 +153,7 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
-        renew.setFocusable(false);
+        //renew.setFocusable(false);
         this.proceso = new Thread(this.lienzo1);
         this.lienzo1.setJugando(true);
         proceso.start();
@@ -208,6 +208,7 @@ public class Inicio extends javax.swing.JFrame {
         this.lienzo1.setJugando(false);
         this.lienzo1.setFiguras(new LinkedList<>());
         iniciarMundo();
+        cambiarFoco();
         startActionPerformed(evt);   
     }//GEN-LAST:event_renewActionPerformed
 //
